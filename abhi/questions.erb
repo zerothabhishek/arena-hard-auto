@@ -11,10 +11,12 @@
     overflow-x: scroll;
     margin-left: 4em;
   }
-  .the-question {
+  .highlighted {
+    background-color: lightcoral;
+    padding: 0 1em;
   }
   .the-question pre {
-    text-wrap: auto;
+    text-wrap: pretty;
     background-color: aliceblue;
     padding: 1em;
     font-size: medium;
@@ -26,10 +28,16 @@
 
   <ol>
     <% questions.each do |qh| %>
-      <li class="question-block" id="<%= qh["question_id"] %>">
+      <% highlighted_class = qh['hl'] ? 'highlighted' : '' %>
+      <li 
+        class="question-block <%= highlighted_class %>" 
+        id="<%= qh["question_id"] %>">
         <h4>
           <%= qh["cluster"] %>
         </h4>
+        <% if qh['hl'] %>
+          <div>Highlighted</div>
+        <% end %>
         <div class="the-question">
           <% qh["turns"].each do |turn| %>
             <pre><%= CGI.escape_html turn["content"] %></pre>
