@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Arena Hard Auto questions </title>
+</head>
+<style type="text/css">
+  .question-block {
+    width: 60em;
+    overflow-x: scroll;
+    margin-left: 4em;
+  }
+  .the-question {
+  }
+  .the-question pre {
+    text-wrap: auto;
+    background-color: aliceblue;
+    padding: 1em;
+    font-size: medium;
+  }
+</style>
+<body>
+
+  <h1>Arena Hard Auto Questions</h1>
+
+  <ol>
+    <% questions.each do |qh| %>
+      <li class="question-block" id="<%= qh["question_id"] %>">
+        <h4>
+          <%= qh["cluster"] %>
+        </h4>
+        <div class="the-question">
+          <% qh["turns"].each do |turn| %>
+            <pre><%= CGI.escape_html turn["content"] %></pre>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ol>
+
+</body>
+</html>
